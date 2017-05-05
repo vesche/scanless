@@ -1,8 +1,8 @@
 # scanless
 
-**scanless** (adj): lacking respectable morals. _That girl is scanless!_
-
 Command-line utility for using websites that can perform port scans on your behalf. Useful for early stages of a penetration test or if you'd like to run a port scan on a host so that it won't come from your IP.
+
+[**scanless**](http://www.urbandictionary.com/define.php?term=scanless) (adj): lacking respectable morals. _That girl is scanless!_
 
 ## Public Port Scanners
 * [viewdns.info](http://viewdns.info/)
