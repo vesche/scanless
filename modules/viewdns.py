@@ -49,5 +49,4 @@ def scan(target):
         else:
             status.append('open')
 
-    print(OUTPUT.format(*status))
-
+    return OUTPUT.format(*status)

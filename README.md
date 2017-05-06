@@ -6,6 +6,8 @@ Command-line utility for using websites that can perform port scans on your beha
 
 ## Public Port Scanners
 * [viewdns.info](http://viewdns.info/)
+* [hackertarget.com](https://hackertarget.com/nmap-online-port-scanner/)
+* [www.t1shopper.com](http://www.t1shopper.com/tools/port-scan/)
 * [www.yougetsignal.com](http://www.yougetsignal.com/)
 
 ## Usage
