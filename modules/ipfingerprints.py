@@ -1,5 +1,5 @@
 #
-# scanless hidemyname module
+# scanless ipfingerprints module
 # https://github.com/vesche/scanless
 #
 

@@ -9,6 +9,7 @@ Command-line utility for using websites that can perform port scans on your beha
 * [viewdns](http://viewdns.info/)
 * [hackertarget](https://hackertarget.com/nmap-online-port-scanner/)
 * [ipfingerprints](http://www.ipfingerprints.com/portscan.php)
+* [pingeu](http://ping.eu/port-chk/)
 
 ## Usage
 Requires the `requests` and `bs4` libraries to run, install with pip.
@@ -34,7 +35,7 @@ yougetsignal   | http://www.yougetsignal.com
 viewdns        | http://viewdns.info
 hackertarget   | https://hackertarget.com
 ipfingerprints | http://www.ipfingerprints.com
-
+pingeu         | http://ping.eu
 
 $ python scanless.py -s viewdns -t scanme.nmap.org
 Running scanless...
@@ -125,4 +126,38 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
 Nmap done: 1 IP address (1 host up) scanned in 7.05 second
 ----------------------------
+
+------- ipfingerprints -------
+Host is up (0.16s latency).
+Not shown: 484 closed ports
+PORT    STATE    SERVICE
+22/tcp  open     ssh
+80/tcp  open     http
+111/tcp filtered rpcbind
+135/tcp filtered msrpc
+136/tcp filtered profile
+137/tcp filtered netbios-ns
+138/tcp filtered netbios-dgm
+139/tcp filtered netbios-ssn
+445/tcp filtered microsoft-ds
+Device type: general purpose
+Running: Linux 3.X
+OS CPE: cpe:/o:linux:linux_kernel:3
+OS details: Linux 3.11 - 3.14
+Network Distance: 10 hops
+------------------------------
+
+------- pingeu -------
+PORT     STATE  SERVICE
+21/tcp   closed ftp
+22/tcp   open   ssh
+23/tcp   closed telnet
+25/tcp   closed smtp
+53/tcp   closed dns
+80/tcp   open   http
+139/tcp  closed netbios
+443/tcp  closed https
+445/tcp  closed smb
+3389/tcp closed rdp
+----------------------
 ```
