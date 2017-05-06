@@ -37,22 +37,22 @@ $ python scanless.py -a -t scanme.nmap.org
 Running scanless...
 
 ------- viewdns -------
-  PORT    STATE SERVICE
-21/tcp   closed     ftp
-22/tcp   open       ssh
-23/tcp   closed  telnet
-25/tcp   closed    smtp
-53/tcp   closed     dns
-80/tcp   open      http
-110/tcp  closed    pop3
+PORT     STATE  SERVICE
+21/tcp   closed ftp
+22/tcp   open   ssh
+23/tcp   closed telnet
+25/tcp   closed smtp
+53/tcp   closed dns
+80/tcp   open   http
+110/tcp  closed pop3
 139/tcp  closed netbios
-143/tcp  closed    imap
-443/tcp  closed   https
-445/tcp  closed     smb
-1433/tcp closed   mssql
-1521/tcp closed  oracle
-3306/tcp closed   mysql
-3389/tcp closed     rdp
+143/tcp  closed imap
+443/tcp  closed https
+445/tcp  closed smb
+1433/tcp closed mssql
+1521/tcp closed oracle
+3306/tcp closed mysql
+3389/tcp closed rdp
 -----------------------
 
 ------- hackertarget -------
