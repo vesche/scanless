@@ -1,5 +1,5 @@
 #
-# scanless t1shopper module
+# scanless yougetsignal module
 # https://github.com/vesche/scanless
 #
 

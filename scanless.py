@@ -10,9 +10,9 @@ from modules import viewdns, hackertarget, yougetsignal
 
 SCANNERS = '''Scanner Name | Website
 -------------|-----------------------------
+yougetsignal | http://www.yougetsignal.com/
 viewdns      | http://viewdns.info/
 hackertarget | https://hackertarget.com/
-yougetsignal | http://www.yougetsignal.com/
 '''
 
 

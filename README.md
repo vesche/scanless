@@ -30,9 +30,9 @@ optional arguments:
 $ python scanless.py --list
 Scanner Name | Website
 -------------|-----------------------------
+yougetsignal | http://www.yougetsignal.com/
 viewdns      | http://viewdns.info/
 hackertarget | https://hackertarget.com/
-yougetsignal | http://www.yougetsignal.com/
 
 $ python scanless.py -s viewdns -t scanme.nmap.org
 Running scanless...
