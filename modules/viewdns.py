@@ -26,8 +26,7 @@ PORT     STATE  SERVICE
 1521/tcp {:<6} oracle
 3306/tcp {:<6} mysql
 3389/tcp {:<6} rdp
------------------------
-'''
+-----------------------'''
 
 
 def scan(target):

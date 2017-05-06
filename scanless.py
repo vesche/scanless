@@ -6,12 +6,13 @@
 #
 
 import argparse
-from modules import viewdns, hackertarget
+from modules import viewdns, hackertarget, yougetsignal
 
 SCANNERS = '''Scanner Name | Website
--------------|--------------------------
+-------------|-----------------------------
 viewdns      | http://viewdns.info/
 hackertarget | https://hackertarget.com/
+yougetsignal | http://www.yougetsignal.com/
 '''
 
 
@@ -19,21 +20,25 @@ def scanless(target, scanner):
     print('Running scanless...')
 
     if scanner == 'all':
-        return viewdns.scan(target) + hackertarget.scan(target)
+        print(yougetsignal.scan(target))
+        print(viewdns.scan(target))
+        print(hackertarget.scan(target))
     elif scanner == 'viewdns':
-        return viewdns.scan(target)
+        print(viewdns.scan(target))
     elif scanner == 'hackertarget':
-        return hackertarget.scan(target)
+        print(hackertarget.scan(target))
+    elif scanner == 'yougetsignal':
+        print(yougetsignal.scan(target))
     else:
-        return 'Scanner not found, see --list to view all.'
+        return 'Scanner not found, see --list to view all supported scanners.'
 
 
 def get_parser():
     parser = argparse.ArgumentParser(description='scanless, public port scan scrapper')
     parser.add_argument('-t', '--target', help='ip or domain to scan',
                         type=str)
-    parser.add_argument('-s', '--scanner', help='scanner to use (default: viewdns)',
-                        type=str, default='viewdns')
+    parser.add_argument('-s', '--scanner', help='scanner to use (default: yougetsignal)',
+                        type=str, default='yougetsignal')
     parser.add_argument('-l', '--list', help='list scanners',
                         action='store_true')
     parser.add_argument('-a', '--all', help='use all the scanners',
@@ -59,7 +64,7 @@ def main():
     if args['all']:
         scanner = 'all'
 
-    print(scanless(target, scanner))
+    scanless(target, scanner)
 
 
 if __name__ == '__main__':

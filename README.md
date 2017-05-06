@@ -5,10 +5,10 @@ Command-line utility for using websites that can perform port scans on your beha
 [**scanless**](http://www.urbandictionary.com/define.php?term=scanless) (adj): lacking respectable morals. _That girl is scanless!_
 
 ## Public Port Scanners
+* [www.yougetsignal.com](http://www.yougetsignal.com/)
 * [viewdns.info](http://viewdns.info/)
 * [hackertarget.com](https://hackertarget.com/nmap-online-port-scanner/)
 * [www.t1shopper.com](http://www.t1shopper.com/tools/port-scan/) (not yet implemented)
-* [www.yougetsignal.com](http://www.yougetsignal.com/) (not yet implemented)
 
 ## Usage
 Requires the `requests` and `bs4` libraries to run, install with pip.
@@ -23,18 +23,65 @@ optional arguments:
   -t TARGET, --target TARGET
                         ip or domain to scan
   -s SCANNER, --scanner SCANNER
-                        scanner to use (default: viewdns)
+                        scanner to use (default: yougetsignal)
   -l, --list            list scanners
   -a, --all             use all the scanners
 
 $ python scanless.py --list
 Scanner Name | Website
--------------|--------------------------
+-------------|-----------------------------
 viewdns      | http://viewdns.info/
 hackertarget | https://hackertarget.com/
+yougetsignal | http://www.yougetsignal.com/
+
+$ python scanless.py -s viewdns -t scanme.nmap.org
+Running scanless...
+
+------- viewdns -------
+PORT     STATE  SERVICE
+21/tcp   closed ftp
+22/tcp   open   ssh
+23/tcp   closed telnet
+25/tcp   closed smtp
+53/tcp   closed dns
+80/tcp   open   http
+110/tcp  closed pop3
+139/tcp  closed netbios
+143/tcp  closed imap
+443/tcp  closed https
+445/tcp  closed smb
+1433/tcp closed mssql
+1521/tcp closed oracle
+3306/tcp closed mysql
+3389/tcp closed rdp
+-----------------------
 
 $ python scanless.py -a -t scanme.nmap.org
 Running scanless...
+
+------- yougetsignal -------
+PORT     STATE  SERVICE
+21/tcp   closed ftp
+22/tcp   open   ssh
+23/tcp   closed telnet
+25/tcp   closed smtp
+53/tcp   closed dns
+80/tcp   open   http
+110/tcp  closed pop3
+115/tcp  closed sftp
+135/tcp  closed msrpc
+139/tcp  closed netbios
+143/tcp  closed imap
+194/tcp  closed irc
+443/tcp  closed https
+445/tcp  closed smb
+1433/tcp closed mssql
+3306/tcp closed mysql
+3389/tcp closed rdp
+5632/tcp closed pcanywhere
+5900/tcp closed vnc
+6112/tcp closed wc3
+----------------------------
 
 ------- viewdns -------
 PORT     STATE  SERVICE
