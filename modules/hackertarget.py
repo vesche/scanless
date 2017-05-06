@@ -1,7 +1,6 @@
-
 #
-# scanless.py
-# hackertarget.com module
+# scanless hackertarget module
+# https://github.com/vesche/scanless
 #
 
 import bs4

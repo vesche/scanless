@@ -1,7 +1,6 @@
-
 #
-# scanless.py
-# viewdns.info module
+# scanless viewdns module
+# https://github.com/vesche/scanless
 #
 
 import bs4

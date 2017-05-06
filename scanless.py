@@ -1,15 +1,14 @@
 #!/usr/bin/env python
 
 #
-# scanless.py
-# main program
+# scanless - public port scan scrapper
+# https://github.com/vesche/scanless
 #
 
 import argparse
 from modules import viewdns, hackertarget
 
-SCANNERS = '''
-Scanner Name | Website
+SCANNERS = '''Scanner Name | Website
 -------------|--------------------------
 viewdns      | http://viewdns.info/
 hackertarget | https://hackertarget.com/
