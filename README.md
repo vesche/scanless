@@ -5,10 +5,10 @@ Command-line utility for using websites that can perform port scans on your beha
 [**scanless**](http://www.urbandictionary.com/define.php?term=scanless) (adj): lacking respectable morals. _That girl is scanless!_
 
 ## Public Port Scanners
-* [www.yougetsignal.com](http://www.yougetsignal.com/)
-* [viewdns.info](http://viewdns.info/)
-* [hackertarget.com](https://hackertarget.com/nmap-online-port-scanner/)
-* [www.t1shopper.com](http://www.t1shopper.com/tools/port-scan/) (not yet implemented)
+* [yougetsignal](http://www.yougetsignal.com/tools/open-ports/)
+* [viewdns](http://viewdns.info/)
+* [hackertarget](https://hackertarget.com/nmap-online-port-scanner/)
+* [ipfingerprints](http://www.ipfingerprints.com/portscan.php)
 
 ## Usage
 Requires the `requests` and `bs4` libraries to run, install with pip.
@@ -28,11 +28,13 @@ optional arguments:
   -a, --all             use all the scanners
 
 $ python scanless.py --list
-Scanner Name | Website
--------------|-----------------------------
-yougetsignal | http://www.yougetsignal.com/
-viewdns      | http://viewdns.info/
-hackertarget | https://hackertarget.com/
+Scanner Name   | Website
+---------------|------------------------------
+yougetsignal   | http://www.yougetsignal.com
+viewdns        | http://viewdns.info
+hackertarget   | https://hackertarget.com
+ipfingerprints | http://www.ipfingerprints.com
+
 
 $ python scanless.py -s viewdns -t scanme.nmap.org
 Running scanless...

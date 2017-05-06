@@ -6,13 +6,14 @@
 #
 
 import argparse
-from modules import viewdns, hackertarget, yougetsignal
+from modules import viewdns, hackertarget, yougetsignal, ipfingerprints
 
-SCANNERS = '''Scanner Name | Website
--------------|-----------------------------
-yougetsignal | http://www.yougetsignal.com/
-viewdns      | http://viewdns.info/
-hackertarget | https://hackertarget.com/
+SCANNERS = '''Scanner Name   | Website
+---------------|------------------------------
+yougetsignal   | http://www.yougetsignal.com
+viewdns        | http://viewdns.info
+hackertarget   | https://hackertarget.com
+ipfingerprints | http://www.ipfingerprints.com
 '''
 
 
@@ -23,12 +24,15 @@ def scanless(target, scanner):
         print(yougetsignal.scan(target))
         print(viewdns.scan(target))
         print(hackertarget.scan(target))
+        print(ipfingerprints.scan(target))
     elif scanner == 'viewdns':
         print(viewdns.scan(target))
     elif scanner == 'hackertarget':
         print(hackertarget.scan(target))
     elif scanner == 'yougetsignal':
         print(yougetsignal.scan(target))
+    elif scanner == 'ipfingerprints':
+        print(ipfingerprints.scan(target))
     else:
         return 'Scanner not found, see --list to view all supported scanners.'
 
