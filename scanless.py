@@ -6,9 +6,10 @@
 #
 
 import argparse
-from modules import viewdns, hackertarget, yougetsignal, ipfingerprints, pingeu
+from scanners import viewdns, hackertarget, yougetsignal, ipfingerprints, pingeu
 
-SCANNERS = '''Scanner Name   | Website
+
+SCAN_LIST = '''Scanner Name   | Website
 ---------------|------------------------------
 yougetsignal   | http://www.yougetsignal.com
 viewdns        | http://viewdns.info
@@ -16,29 +17,29 @@ hackertarget   | https://hackertarget.com
 ipfingerprints | http://www.ipfingerprints.com
 pingeu         | http://ping.eu
 '''
+SCANNERS = { 'yougetsignal':     yougetsignal,
+             'viewdns':          viewdns,
+             'hackertarget':     hackertarget,
+             'ipfingerprints':   ipfingerprints,
+             'pingeu':           pingeu }
 
 
 def scanless(target, scanner):
+    def run(s):
+        try:
+            return SCANNERS[s].scan(target)
+        except:
+            return 'Error, {} was unable to run.'.format(m)
+
     print('Running scanless...')
 
     if scanner == 'all':
-        print(yougetsignal.scan(target))
-        print(viewdns.scan(target))
-        print(hackertarget.scan(target))
-        print(ipfingerprints.scan(target))
-        print(pingeu.scan(target))
-    elif scanner == 'viewdns':
-        print(viewdns.scan(target))
-    elif scanner == 'hackertarget':
-        print(hackertarget.scan(target))
-    elif scanner == 'yougetsignal':
-        print(yougetsignal.scan(target))
-    elif scanner == 'ipfingerprints':
-        print(ipfingerprints.scan(target))
-    elif scanner == 'pingeu':
-        print(pingeu.scan(target))
+        for s, _ in SCANNERS.items():
+            print(run(s))
+    elif scanner in SCANNERS:
+        print(run(scanner))
     else:
-        return 'Scanner not found, see --list to view all supported scanners.'
+        print('Scanner not found, see --list to view all supported scanners.')
 
 
 def get_parser():
@@ -59,7 +60,7 @@ def main():
     args = vars(parser.parse_args())
 
     if args['list']:
-        print(SCANNERS)
+        print(SCAN_LIST)
         return
 
     if not args['target']:
