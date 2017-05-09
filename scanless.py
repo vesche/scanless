@@ -8,7 +8,6 @@
 import argparse
 from scanners import viewdns, hackertarget, yougetsignal, ipfingerprints, pingeu
 
-
 SCAN_LIST = '''Scanner Name   | Website
 ---------------|------------------------------
 yougetsignal   | http://www.yougetsignal.com
@@ -29,7 +28,7 @@ def scanless(target, scanner):
         try:
             return SCANNERS[s].scan(target)
         except:
-            return 'Error, {} was unable to run.'.format(m)
+            return 'Error, {} was unable to run.'.format(s)
 
     print('Running scanless...')
 
