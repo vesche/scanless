@@ -10,6 +10,8 @@ Command-line utility for using websites that can perform port scans on your beha
 * [hackertarget](https://hackertarget.com/nmap-online-port-scanner/)
 * [ipfingerprints](http://www.ipfingerprints.com/portscan.php)
 * [pingeu](http://ping.eu/port-chk/)
+* [spiderip](https://spiderip.com/online-port-scan.php)
+* [portcheckers](http://www.portcheckers.com/)
 
 ## Usage
 Requires the `requests` and `bs4` libraries to run, install with pip.
@@ -36,6 +38,8 @@ viewdns        | http://viewdns.info
 hackertarget   | https://hackertarget.com
 ipfingerprints | http://www.ipfingerprints.com
 pingeu         | http://ping.eu
+spiderip       | https://spiderip.com
+portcheckers   | http://www.portcheckers.com
 
 $ python scanless.py -s viewdns -t scanme.nmap.org
 Running scanless...
