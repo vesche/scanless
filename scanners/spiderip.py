@@ -28,14 +28,15 @@ PORT     STATE  SERVICE
 8443/tcp {:<6} https-alt
 ------------------------'''
 
+
 def scan(target):
     url = '{}{}'.format(BASE_URL, SCAN_LOC)
 
     r = requests.post(url, data={'ip': target, 'language[]': [21, 22, 25, 80, 110, 143, 443, 465, 993, 995, 1433, 3306, 3389, 5900, 8080, 8443]})
 
     page = r.content
-    #Didn't use bs4 because the <br> tags are fucked up.
-    pagelist = page.split("<br>")
+    # didn't use bs4 because the <br> tags are messed up
+    pagelist = page.split('<br>')
 
     status = []
     for i in pagelist:

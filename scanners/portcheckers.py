@@ -2,8 +2,6 @@
 # scanless portcheckers module
 # https://github.com/vesche/scanless
 #
-# portcheckers.com is painfully slow though,
-# inital test on example.org takes around 1min 3.116sec
 
 import requests
 
@@ -28,10 +26,12 @@ PORT     STATE  SERVICE
 8080/tcp {:<6} webcache
 -----------------------------'''
 
+
 def scan(target):
     url = '{}{}'.format(BASE_URL, SCAN_LOC)
 
-    r = requests.post(url, data={'server': target, 'quick': 'true'})
+    payload = { 'server': target, 'quick': 'true' }
+    r = requests.post(url, payload)
 
     page = r.content
     pagelist = page.split('<div><span style="display: inline-block;width:200px;">')
@@ -44,5 +44,7 @@ def scan(target):
             status.append('open')
         elif 'Not Available' in i:
             status.append('closed')
+        else:
+            status.append('error')
 
     return OUTPUT.format(*status)
