@@ -6,7 +6,7 @@
 #
 
 import argparse
-from scanners import viewdns, hackertarget, yougetsignal, ipfingerprints, pingeu
+from scanners import viewdns, hackertarget, yougetsignal, ipfingerprints, pingeu, spiderip, portcheckers
 
 SCAN_LIST = '''Scanner Name   | Website
 ---------------|------------------------------
@@ -15,12 +15,16 @@ viewdns        | http://viewdns.info
 hackertarget   | https://hackertarget.com
 ipfingerprints | http://www.ipfingerprints.com
 pingeu         | http://ping.eu
+spiderip       | https://spiderip.com
+portcheckers   | http://www.portcheckers.com
 '''
 SCANNERS = { 'yougetsignal':     yougetsignal,
              'viewdns':          viewdns,
              'hackertarget':     hackertarget,
              'ipfingerprints':   ipfingerprints,
-             'pingeu':           pingeu }
+             'pingeu':           pingeu,
+             'spiderip':         spiderip,
+             'portcheckers':     portcheckers }
 
 
 def scanless(target, scanner):
