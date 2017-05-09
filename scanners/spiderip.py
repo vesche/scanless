@@ -34,7 +34,7 @@ def scan(target):
 
     r = requests.post(url, data={'ip': target, 'language[]': [21, 22, 25, 80, 110, 143, 443, 465, 993, 995, 1433, 3306, 3389, 5900, 8080, 8443]})
 
-    page = r.content
+    page = str(r.content)
     # didn't use bs4 because the <br> tags are messed up
     pagelist = page.split('<br>')
 

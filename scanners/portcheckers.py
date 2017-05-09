@@ -33,8 +33,8 @@ def scan(target):
     payload = { 'server': target, 'quick': 'true' }
     r = requests.post(url, payload)
 
-    page = r.content
-    pagelist = page.split('<div><span style="display: inline-block;width:200px;">')
+    page = str(r.content)
+    pagelist = page.split('<div><span style="display: inline-block;width:200px;">')[1:]
 
     status = []
     for i in pagelist:
