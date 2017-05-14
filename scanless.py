@@ -6,7 +6,7 @@
 #
 
 import argparse
-from scanners import viewdns, hackertarget, yougetsignal, ipfingerprints, pingeu, spiderip, portcheckers
+from scanners import *
 
 SCAN_LIST = '''Scanner Name   | Website
 ---------------|------------------------------
