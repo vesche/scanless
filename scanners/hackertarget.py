@@ -27,4 +27,4 @@ def scan(target):
     soup = bs4.BeautifulSoup(page, 'html.parser')
     data = soup.findAll('pre', {'id': 'formResponse'})[0].string
 
-    return OUTPUT.format(data[2:-2].replace('\\n', '\n'))
+    return OUTPUT.format(data[1:-1].replace('\\n', '\n'))
