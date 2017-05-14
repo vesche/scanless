@@ -12,7 +12,7 @@ BASE_URL = 'http://www.t1shopper.com'
 SCAN_LOC = '/tools/port-scan/result/'
 
 OUTPUT = '''
-------- spiderip -------
+------- t1shopper ------
 PORT     STATE  SERVICE
 21/tcp   {:<6} ftp
 23/tcp   {:<6} telnet
