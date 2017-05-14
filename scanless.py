@@ -25,6 +25,7 @@ pingeu         | http://ping.eu
 spiderip       | https://spiderip.com
 portcheckers   | http://www.portcheckers.com
 t1shopper      | http://www.t1shopper.com
+shodanip       | https://www.shodan.io/
 '''
 SCANNERS = { 'yougetsignal':     yougetsignal,
              'viewdns':          viewdns,
@@ -33,15 +34,17 @@ SCANNERS = { 'yougetsignal':     yougetsignal,
              'pingeu':           pingeu,
              'spiderip':         spiderip,
              'portcheckers':     portcheckers,
-             't1shopper':        t1shopper }
+             't1shopper':        t1shopper,
+             'shodanip':         shodanip}
 
 
 def scanless(target, scanner):
     def run(s):
         try:
             return SCANNERS[s].scan(target)
-        except:
-            return 'Error, {} was unable to run.'.format(s)
+        except Exception as e:
+            # return 'Error, {} was unable to run.'.format(s)
+            raise e
 
     print('Running scanless...')
 
