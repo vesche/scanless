@@ -16,11 +16,11 @@ Command-line utility for using websites that can perform port scans on your beha
 
 ## Install & Usage
 
-To install, simply run: `pip install scanless`
+To install, simply run: `sudo pip install scanless`
 
 ```
-$ python scanless.py --help
-usage: scanless.py [-h] [-t TARGET] [-s SCANNER] [-l] [-a]
+$ scanless --help
+usage: scanless [-h] [-t TARGET] [-s SCANNER] [-l] [-a]
 
 scanless, public port scan scrapper
 
@@ -33,7 +33,7 @@ optional arguments:
   -l, --list            list scanners
   -a, --all             use all the scanners
 
-$ python scanless.py --list
+$ scanless --list
 Scanner Name   | Website
 ---------------|------------------------------
 yougetsignal   | http://www.yougetsignal.com
@@ -45,7 +45,7 @@ spiderip       | https://spiderip.com
 portcheckers   | http://www.portcheckers.com
 t1shopper      | http://www.t1shopper.com
 
-$ python scanless.py -s viewdns -t scanme.nmap.org
+$ scanless -s viewdns -t scanme.nmap.org
 Running scanless...
 
 ------- viewdns -------
@@ -67,7 +67,7 @@ PORT     STATE  SERVICE
 3389/tcp closed rdp
 -----------------------
 
-$ python scanless.py -a -t scanme.nmap.org
+$ scanless -a -t scanme.nmap.org
 Running scanless...
 
 ------- yougetsignal -------
