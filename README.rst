@@ -22,7 +22,7 @@ Install & Usage
 
 To install, simply run: ``pip install scanless``
 
-.. code-block::
+.. code-block:: bash
     $ scanless --help
     usage: scanless.py [-h] [-t TARGET] [-s SCANNER] [-l] [-a]
 
