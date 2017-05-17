@@ -8,11 +8,7 @@
 import argparse
 import sys
 
-try:
-    from scanners import *
-except:
-    print('Error, scanless requires the requests and bs4 libraries.')
-    sys.exit(1)
+from scanless.scanners import *
 
 
 SCAN_LIST = '''Scanner Name   | Website
