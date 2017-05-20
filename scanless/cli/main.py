@@ -7,6 +7,7 @@
 
 import argparse
 import sys
+from random import choice
 
 from scanless.scanners import *
 
@@ -56,6 +57,8 @@ def get_parser():
                         type=str)
     parser.add_argument('-s', '--scanner', help='scanner to use (default: yougetsignal)',
                         type=str, default='yougetsignal')
+    parser.add_argument('-r', '--random', help='use a random scanner',
+                        action='store_true')
     parser.add_argument('-l', '--list', help='list scanners',
                         action='store_true')
     parser.add_argument('-a', '--all', help='use all the scanners',
@@ -77,6 +80,9 @@ def main():
 
     target = args['target']
     scanner = args['scanner'].lower()
+
+    if args['random']:
+        scanner = choice([s for s, _ in SCANNERS.items()])
 
     if args['all']:
         scanner = 'all'
