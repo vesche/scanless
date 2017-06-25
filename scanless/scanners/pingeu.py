@@ -29,7 +29,7 @@ def scan(target):
 
     state = []
     for p in PORTS:
-        payload = { 'host': 'scanme.nmap.org',
+        payload = { 'host': target,
                     'port': p,
                     'go': 'Go' }
         r = requests.post(url, payload)
