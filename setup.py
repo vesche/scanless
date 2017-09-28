@@ -5,7 +5,7 @@ from setuptools import setup
 setup(
     name='scanless',
     packages=['scanless', 'scanless.cli', 'scanless.scanners'],
-    version='1.0.4',
+    version='1.0.5',
     description='An online port scan scraper.',
     license='Unlicense',
     url='https://github.com/vesche/scanless',
