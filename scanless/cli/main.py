@@ -56,7 +56,7 @@ def get_parser():
     parser.add_argument('-t', '--target', help='ip or domain to scan',
                         type=str)
     parser.add_argument('-s', '--scanner', help='scanner to use (default: yougetsignal)',
-                        type=str, default='yougetsignal')
+                        type=str, default='hackertarget')
     parser.add_argument('-r', '--random', help='use a random scanner',
                         action='store_true')
     parser.add_argument('-l', '--list', help='list scanners',
