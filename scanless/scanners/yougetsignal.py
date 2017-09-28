@@ -6,7 +6,7 @@
 import bs4
 import requests
 
-BASE_URL = 'http://ports.yougetsignal.com'
+BASE_URL = 'https://ports.yougetsignal.com'
 SCAN_LOC = '/short-scan.php'
 OUTPUT = '''
 ------- yougetsignal -------
