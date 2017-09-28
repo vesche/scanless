@@ -14,9 +14,14 @@ Command-line utility for using websites that can perform port scans on your beha
 * [portcheckers](http://www.portcheckers.com/)
 * [t1shopper](http://www.t1shopper.com/tools/port-scan/)
 
-## Install & Usage
+## Install
 
-To install, simply run: `sudo pip install scanless`
+To install, simply run:
+```
+$ sudo pip install scanless
+```
+
+## Usage
 
 ```
 $ scanless --help
@@ -29,7 +34,7 @@ optional arguments:
   -t TARGET, --target TARGET
                         ip or domain to scan
   -s SCANNER, --scanner SCANNER
-                        scanner to use (default: yougetsignal)
+                        scanner to use (default: hackertarget)
   -l, --list            list scanners
   -a, --all             use all the scanners
 
@@ -45,27 +50,21 @@ spiderip       | https://spiderip.com
 portcheckers   | http://www.portcheckers.com
 t1shopper      | http://www.t1shopper.com
 
-$ scanless -s viewdns -t scanme.nmap.org
+$ scanless -t scanme.nmap.org -s ipfingerprints
 Running scanless...
 
-------- viewdns -------
-PORT     STATE  SERVICE
-21/tcp   closed ftp
-22/tcp   open   ssh
-23/tcp   closed telnet
-25/tcp   closed smtp
-53/tcp   closed dns
-80/tcp   open   http
-110/tcp  closed pop3
-139/tcp  closed netbios
-143/tcp  closed imap
-443/tcp  closed https
-445/tcp  closed smb
-1433/tcp closed mssql
-1521/tcp closed oracle
-3306/tcp closed mysql
-3389/tcp closed rdp
------------------------
+------- ipfingerprints -------
+Host is up (0.16s latency).
+Not shown: 491 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
+Device type: general purpose
+Running: Linux 3.X|4.X
+OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4
+OS details: Linux 3.2 - 4.6
+Network Distance: 7 hops
+------------------------------
 
 $ scanless -a -t scanme.nmap.org
 Running scanless...
@@ -137,22 +136,15 @@ Nmap done: 1 IP address (1 host up) scanned in 6.94 seconds
 
 ------- ipfingerprints -------
 Host is up (0.16s latency).
-Not shown: 484 closed ports
-PORT    STATE    SERVICE
-22/tcp  open     ssh
-80/tcp  open     http
-111/tcp filtered rpcbind
-135/tcp filtered msrpc
-136/tcp filtered profile
-137/tcp filtered netbios-ns
-138/tcp filtered netbios-dgm
-139/tcp filtered netbios-ssn
-445/tcp filtered microsoft-ds
+Not shown: 491 closed ports
+PORT   STATE SERVICE
+22/tcp open  ssh
+80/tcp open  http
 Device type: general purpose
-Running: Linux 3.X
-OS CPE: cpe:/o:linux:linux_kernel:3
-OS details: Linux 3.11 - 3.14
-Network Distance: 10 hops
+Running: Linux 3.X|4.X
+OS CPE: cpe:/o:linux:linux_kernel:3 cpe:/o:linux:linux_kernel:4
+OS details: Linux 3.2 - 4.6
+Network Distance: 7 hops
 ------------------------------
 
 ------- pingeu -------

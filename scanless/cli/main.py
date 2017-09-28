@@ -55,7 +55,7 @@ def get_parser():
     parser = argparse.ArgumentParser(description='scanless, public port scan scrapper')
     parser.add_argument('-t', '--target', help='ip or domain to scan',
                         type=str)
-    parser.add_argument('-s', '--scanner', help='scanner to use (default: yougetsignal)',
+    parser.add_argument('-s', '--scanner', help='scanner to use (default: hackertarget)',
                         type=str, default='hackertarget')
     parser.add_argument('-r', '--random', help='use a random scanner',
                         action='store_true')
