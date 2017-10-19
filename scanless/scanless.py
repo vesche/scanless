@@ -9,7 +9,7 @@ import argparse
 import sys
 from random import choice
 
-from scanless.scanners import *
+from .scanners import *
 
 
 SCAN_LIST = '''Scanner Name   | Website
@@ -37,6 +37,7 @@ def scanless(target, scanner):
     def run(s):
         try:
             return SCANNERS[s].scan(target)
+        # no error is returned here because it's irrelevant
         except:
             return 'Error, {} was unable to run.'.format(s)
 
