@@ -20,7 +20,6 @@ hackertarget   | https://hackertarget.com
 ipfingerprints | http://www.ipfingerprints.com
 pingeu         | http://ping.eu
 spiderip       | https://spiderip.com
-portcheckers   | http://www.portcheckers.com
 t1shopper      | http://www.t1shopper.com
 '''
 SCANNERS = { 'yougetsignal':     yougetsignal,
@@ -29,7 +28,6 @@ SCANNERS = { 'yougetsignal':     yougetsignal,
              'ipfingerprints':   ipfingerprints,
              'pingeu':           pingeu,
              'spiderip':         spiderip,
-             'portcheckers':     portcheckers,
              't1shopper':        t1shopper }
 
 

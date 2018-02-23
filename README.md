@@ -11,7 +11,6 @@ Command-line utility for using websites that can perform port scans on your beha
 * [ipfingerprints](http://www.ipfingerprints.com/portscan.php)
 * [pingeu](http://ping.eu/port-chk/)
 * [spiderip](https://spiderip.com/online-port-scan.php)
-* [portcheckers](http://www.portcheckers.com/)
 * [t1shopper](http://www.t1shopper.com/tools/port-scan/)
 
 ## Install
@@ -35,6 +34,7 @@ optional arguments:
                         ip or domain to scan
   -s SCANNER, --scanner SCANNER
                         scanner to use (default: hackertarget)
+  -r, --random          use a random scanner
   -l, --list            list scanners
   -a, --all             use all the scanners
 
@@ -47,7 +47,6 @@ hackertarget   | https://hackertarget.com
 ipfingerprints | http://www.ipfingerprints.com
 pingeu         | http://ping.eu
 spiderip       | https://spiderip.com
-portcheckers   | http://www.portcheckers.com
 t1shopper      | http://www.t1shopper.com
 
 $ scanless -t scanme.nmap.org -s ipfingerprints
@@ -180,24 +179,6 @@ PORT     STATE  SERVICE
 8080/tcp closed http-alt
 8443/tcp closed https-alt
 ------------------------
-
--------- portcheckers --------
-PORT     STATE  SERVICE
-21/tcp   closed ftp
-22/tcp   open   ssh
-23/tcp   closed telnet
-25/tcp   closed smtp
-80/tcp   open   http
-110/tcp  closed pop3
-115/tcp  closed sftp
-143/tcp  closed imap
-443/tcp  closed https
-1433/tcp closed ms-sql-s
-3306/tcp closed mysql
-3389/tcp closed ms-wbt-server
-5900/tcp closed rfb
-8080/tcp closed webcache
------------------------------
 
 ------- t1shopper -------
 PORT     STATE  SERVICE

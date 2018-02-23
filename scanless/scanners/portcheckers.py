@@ -3,6 +3,9 @@
 # https://github.com/vesche/scanless
 #
 
+# Deprecated! Portcheckers is down as of 23Feb2018
+# "Unable to connect to the remote server"
+
 import requests
 
 BASE_URL = 'http://www.portcheckers.com'
