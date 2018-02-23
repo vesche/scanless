@@ -9,6 +9,7 @@ import argparse
 import sys
 from random import choice
 
+from . import __version__
 from .scanners import *
 
 
@@ -52,6 +53,8 @@ def scanless(target, scanner):
 
 def get_parser():
     parser = argparse.ArgumentParser(description='scanless, public port scan scrapper')
+    parser.add_argument('-v', '--version', help='display the current version',
+                        action='store_true')
     parser.add_argument('-t', '--target', help='ip or domain to scan',
                         type=str)
     parser.add_argument('-s', '--scanner', help='scanner to use (default: hackertarget)',
@@ -68,6 +71,10 @@ def get_parser():
 def main():
     parser = get_parser()
     args = vars(parser.parse_args())
+
+    if args['version']:
+        print(__version__)
+        return
 
     if args['list']:
         print(SCAN_LIST)
