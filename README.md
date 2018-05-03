@@ -1,6 +1,6 @@
 # scanless
 
-Command-line utility for using websites that can perform port scans on your behalf. Useful for early stages of a penetration test or if you'd like to run a port scan on a host and have it not come from your IP address.
+Command-line utility for using websites that can perform port scans on your behalf.
 
 [**scanless**](http://www.urbandictionary.com/define.php?term=scanless) (adj): lacking respectable morals. _That girl is scanless!_
 
