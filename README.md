@@ -12,6 +12,7 @@ Command-line utility for using websites that can perform port scans on your beha
 * [pingeu](http://ping.eu/port-chk/)
 * [spiderip](https://spiderip.com/online-port-scan.php)
 * [t1shopper](http://www.t1shopper.com/tools/port-scan/)
+* [standingtech](https://portscanner.standingtech.com/)
 
 ## Install
 
@@ -23,13 +24,14 @@ $ sudo pip install scanless
 ## Usage
 
 ```
-$ scanless --help
-usage: scanless [-h] [-t TARGET] [-s SCANNER] [-l] [-a]
+$ scanless --help  
+usage: scanless [-h] [-v] [-t TARGET] [-s SCANNER] [-r] [-l] [-a]
 
 scanless, public port scan scrapper
 
 optional arguments:
   -h, --help            show this help message and exit
+  -v, --version         display the current version
   -t TARGET, --target TARGET
                         ip or domain to scan
   -s SCANNER, --scanner SCANNER
@@ -48,6 +50,7 @@ ipfingerprints | http://www.ipfingerprints.com
 pingeu         | http://ping.eu
 spiderip       | https://spiderip.com
 t1shopper      | http://www.t1shopper.com
+standingtech   | https://portscanner.standingtech.com
 
 $ scanless -t scanme.nmap.org -s ipfingerprints
 Running scanless...
@@ -197,4 +200,22 @@ PORT     STATE  SERVICE
 5900/tcp closed vnc
 8080/tcp closed http-alt
 -------------------------
+
+------- standingtech -------
+PORT     STATE  SERVICE
+21/tcp   closed ftp
+22/tcp   open   ssh
+23/tcp   closed telnet
+25/tcp   closed smtp
+80/tcp   open   http
+110/tcp  closed pop3
+139/tcp  closed netbios
+143/tcp  closed imap
+443/tcp  closed https
+445/tcp  closed smb
+1433/tcp closed mssql
+3306/tcp closed mysql
+3389/tcp closed rdp
+5900/tcp closed vnc
+----------------------------
 ```

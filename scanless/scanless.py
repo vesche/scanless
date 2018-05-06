@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 #
 # scanless - public port scan scrapper
@@ -22,14 +23,16 @@ ipfingerprints | http://www.ipfingerprints.com
 pingeu         | http://ping.eu
 spiderip       | https://spiderip.com
 t1shopper      | http://www.t1shopper.com
+standingtech   | https://portscanner.standingtech.com
 '''
-SCANNERS = { 'yougetsignal':     yougetsignal,
-             'viewdns':          viewdns,
-             'hackertarget':     hackertarget,
-             'ipfingerprints':   ipfingerprints,
-             'pingeu':           pingeu,
-             'spiderip':         spiderip,
-             't1shopper':        t1shopper }
+SCANNERS = { 'yougetsignal':    yougetsignal,
+             'viewdns':         viewdns,
+             'hackertarget':    hackertarget,
+             'ipfingerprints':  ipfingerprints,
+             'pingeu':          pingeu,
+             'spiderip':        spiderip,
+             't1shopper':       t1shopper,
+             'standingtech':    standingtech }
 
 
 def scanless(target, scanner):

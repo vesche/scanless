@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# -*- coding: utf-8 -*-
 
 from setuptools import setup
 from scanless import __version__
@@ -17,5 +18,16 @@ setup(
             'scanless = scanless.scanless:main',
         ]
     },
-    install_requires=['beautifulsoup4', 'requests']
+    install_requires=['beautifulsoup4', 'requests'],
+    classifiers=[
+        "Development Status :: 5 - Production/Stable",
+        "Environment :: Console",
+        "Intended Audience :: Information Technology",
+        "License :: OSI Approved :: MIT License",
+        "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 2.7",
+        "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.6",
+        "Topic :: Security"
+    ]
 )

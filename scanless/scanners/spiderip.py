@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 #
 # scanless spiderip module
 # https://github.com/vesche/scanless

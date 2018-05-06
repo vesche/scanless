@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 #
 # scanless hackertarget module
 # https://github.com/vesche/scanless

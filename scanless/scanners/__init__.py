@@ -1,2 +1,4 @@
+# -*- coding: utf-8 -*-
+
 __all__ = [ 'hackertarget', 'ipfingerprints', 'pingeu', 'portcheckers',
-            'spiderip', 'viewdns', 'yougetsignal', 't1shopper' ]
+            'spiderip', 'standingtech', 'viewdns', 'yougetsignal', 't1shopper' ]

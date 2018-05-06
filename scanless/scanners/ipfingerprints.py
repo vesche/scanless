@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 #
 # scanless ipfingerprints module
 # https://github.com/vesche/scanless
