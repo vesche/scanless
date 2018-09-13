@@ -7,7 +7,7 @@
 
 import requests
 
-BASE_URL = 'http://ping.eu'
+BASE_URL = 'https://ping.eu'
 SCAN_LOC = '/action.php?atype=5'
 OUTPUT = '''
 ------- pingeu -------
