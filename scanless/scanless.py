@@ -1,10 +1,6 @@
 #!/usr/bin/env python
-# -*- coding: utf-8 -*-
 
-#
-# scanless - public port scan scrapper
-# https://github.com/vesche/scanless
-#
+""""scanless - public port scan scrapper"""
 
 import argparse
 import sys

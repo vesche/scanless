@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-
-#
-# scanless ipfingerprints module
-# https://github.com/vesche/scanless
-#
+"""scanless ipfingerprints module"""
 
 import re
 import requests

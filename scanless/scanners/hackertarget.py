@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-
-#
-# scanless hackertarget module
-# https://github.com/vesche/scanless
-#
+"""scanless hackertarget module"""
 
 import bs4
 import requests

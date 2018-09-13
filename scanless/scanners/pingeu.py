@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-
-#
-# scanless pingeu module
-# https://github.com/vesche/scanless
-#
+"""scanless pingeu module"""
 
 import requests
 

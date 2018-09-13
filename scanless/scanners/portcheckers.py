@@ -1,16 +1,8 @@
-# -*- coding: utf-8 -*-
-
-#
-# scanless portcheckers module
-# https://github.com/vesche/scanless
-#
-
-# Deprecated! Portcheckers is down as of 23Feb2018
-# "Unable to connect to the remote server"
+"""scanless portcheckers module"""
 
 import requests
 
-BASE_URL = 'http://www.portcheckers.com'
+BASE_URL = 'https://www.portcheckers.com'
 SCAN_LOC = '/portscan-result'
 OUTPUT = '''
 -------- portcheckers --------
@@ -39,7 +31,7 @@ def scan(target):
     r = requests.post(url, payload)
 
     page = str(r.content)
-    pagelist = page.split('<div><span style="display: inline-block;width:200px;">')[1:]
+    pagelist = page.split('<span style="display: inline-block;width:200px;">')[1:]
 
     status = []
     for i in pagelist:

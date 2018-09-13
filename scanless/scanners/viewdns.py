@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-
-#
-# scanless viewdns module
-# https://github.com/vesche/scanless
-#
+"""scanless viewdns module"""
 
 import bs4
 import requests

@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-
-#
-# scanless standingtech module
-# https://github.com/vesche/scanless
-#
+"""scanless standingtech module"""
 
 import requests
 

@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-
-#
-# scanless t1shopper module
-# https://github.com/vesche/scanless
-#
+"""scanless t1shopper module"""
 
 import requests
 import bs4

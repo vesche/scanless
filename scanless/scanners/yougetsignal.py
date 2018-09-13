@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-
-#
-# scanless yougetsignal module
-# https://github.com/vesche/scanless
-#
+"""scanless yougetsignal module"""
 
 import bs4
 import requests

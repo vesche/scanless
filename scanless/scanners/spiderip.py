@@ -1,9 +1,4 @@
-# -*- coding: utf-8 -*-
-
-#
-# scanless spiderip module
-# https://github.com/vesche/scanless
-#
+"""scanless spiderip module"""
 
 import requests
 
