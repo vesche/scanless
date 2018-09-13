@@ -19,11 +19,12 @@ SCAN_LIST = '''Scanner Name   | Website
 yougetsignal   | http://www.yougetsignal.com
 viewdns        | http://viewdns.info
 hackertarget   | https://hackertarget.com
-ipfingerprints | http://www.ipfingerprints.com
-pingeu         | http://ping.eu
+ipfingerprints | https://www.ipfingerprints.com
+pingeu         | https://ping.eu
 spiderip       | https://spiderip.com
 t1shopper      | http://www.t1shopper.com
 standingtech   | https://portscanner.standingtech.com
+portcheckers   | https://www.portcheckers.com
 '''
 SCANNERS = { 'yougetsignal':    yougetsignal,
              'viewdns':         viewdns,
@@ -32,7 +33,8 @@ SCANNERS = { 'yougetsignal':    yougetsignal,
              'pingeu':          pingeu,
              'spiderip':        spiderip,
              't1shopper':       t1shopper,
-             'standingtech':    standingtech }
+             'standingtech':    standingtech,
+             'portcheckers':    portcheckers }
 
 
 def scanless(target, scanner):
