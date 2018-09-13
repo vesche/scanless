@@ -8,7 +8,7 @@
 import re
 import requests
 
-BASE_URL = 'http://www.ipfingerprints.com'
+BASE_URL = 'https://www.ipfingerprints.com'
 SCAN_LOC = '/scripts/getPortsInfo.php'
 OUTPUT = '''
 ------- ipfingerprints -------
