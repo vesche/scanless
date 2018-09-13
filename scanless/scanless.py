@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-""""scanless - public port scan scrapper"""
+"""scanless - public port scan scrapper"""
 
 import argparse
 import sys
