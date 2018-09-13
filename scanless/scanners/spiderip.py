@@ -7,7 +7,7 @@
 
 import requests
 
-BASE_URL = 'http://spiderip.com'
+BASE_URL = 'https://spiderip.com'
 SCAN_LOC = '/inc/port_scan.php'
 OUTPUT = '''
 ------- spiderip -------
@@ -38,13 +38,14 @@ def scan(target):
         110, 143, 443, 465, 993, 995, 1433, 3306, 3389, 5900, 8080, 8443]})
 
     page = str(r.content)
-    pagelist = page.split('<br>')
+    page_split = page.split('/images/')
+    del page_split[0]
 
     status = []
-    for i in pagelist:
+    for i in page_split:
         i = str(i)
 
-        if 'red' in i:
+        if 'open' in i:
             status.append('open')
         else:
             status.append('closed')
