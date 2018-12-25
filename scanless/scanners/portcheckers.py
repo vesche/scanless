@@ -1,5 +1,11 @@
 """scanless portcheckers module"""
 
+#
+# This module is not working as of 25DEC2018
+# The "quick scan" from portcheckers is reporting all ports as closed:
+# https://www.portcheckers.com/port-scanner
+#
+
 import requests
 
 BASE_URL = 'https://www.portcheckers.com'
@@ -39,7 +45,7 @@ def scan(target):
 
         if 'Open' in i:
             status.append('open')
-        elif 'Not Available' in i:
+        elif 'Closed' in i:
             status.append('closed')
         else:
             status.append('error')

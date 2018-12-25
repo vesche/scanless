@@ -13,13 +13,12 @@ Command-line utility for using websites that can perform port scans on your beha
 * [spiderip](https://spiderip.com/online-port-scan.php)
 * [t1shopper](http://www.t1shopper.com/tools/port-scan/)
 * [standingtech](https://portscanner.standingtech.com/)
-* [portcheckers](https://www.portcheckers.com/) 
 
 ## Install
 
 To install, simply run:
 ```shell
-$ sudo pip install scanless
+$ pip install scanless --user
 ```
 
 ## Usage
