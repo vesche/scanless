@@ -39,7 +39,6 @@ def scanless(target, scanner):
         except:
             return 'Error, {} was unable to run.'.format(s)
 
-    print('Running scanless...')
 
     if scanner == 'all':
         for s, _ in SCANNERS.items():
@@ -93,6 +92,8 @@ def main():
 
     if args['all']:
         scanner = 'all'
+
+    print('Running scanless...')
 
     for result in scanless(target, scanner):
         print(result)
