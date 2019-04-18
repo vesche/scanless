@@ -43,9 +43,11 @@ def scanless(target, scanner):
 
     if scanner == 'all':
         for s, _ in SCANNERS.items():
-            print(run(s))
+            results = []
+            results.append(run(s))
+        return(results)
     elif scanner in SCANNERS:
-        print(run(scanner))
+        return [run(scanner)]
     else:
         print('Scanner not found, see --list to view all supported scanners.')
 
@@ -92,7 +94,8 @@ def main():
     if args['all']:
         scanner = 'all'
 
-    scanless(target, scanner)
+    for result in scanless(target, scanner):
+        print(result)
 
 
 if __name__ == '__main__':
