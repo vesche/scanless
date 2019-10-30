@@ -57,6 +57,7 @@ $ scanless --list
 
 $ scanless -t scanme.nmap.org -s ipfingerprints
 Running scanless v2.0.0...
+ipfingerprints:
 Host is up (0.15s latency).
 Not shown: 484 closed ports
 PORT    STATE    SERVICE
