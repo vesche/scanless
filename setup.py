@@ -21,12 +21,12 @@ setup(
     },
     install_requires=['bs4', 'requests'],
     classifiers=[
-        "Development Status :: 5 - Production/Stable",
-        "Environment :: Console",
-        "Intended Audience :: Information Technology",
-        "License :: OSI Approved :: MIT License",
-        "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.7",
-        "Topic :: Security"
+        'Development Status :: 5 - Production/Stable',
+        'Environment :: Console',
+        'Intended Audience :: Information Technology',
+        'License :: Public Domain',
+        'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.7',
+        'Topic :: Security'
     ]
 )
