@@ -1,6 +1,6 @@
 # scanless
 
-This is a Python 3.7+ command-line utility and library for using websites that can perform port scans on your behalf.
+This is a Python 3.6+ command-line utility and library for using websites that can perform port scans on your behalf.
 
 [**scanless**](http://www.urbandictionary.com/define.php?term=scanless) (adj): lacking respectable morals. _That girl is scanless!_
 
@@ -88,7 +88,6 @@ Network Distance: 7 hops
 Starting Nmap 7.70 ( https://nmap.org ) at 2019-10-30 00:21 UTC
 Nmap scan report for scanme.nmap.org (45.33.32.156)
 Host is up (0.065s latency).
-Other addresses for scanme.nmap.org (not scanned): 2600:3c01::f03c:91ff:fe18:bb2f
 
 PORT     STATE  SERVICE
 21/tcp   closed ftp
