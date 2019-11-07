@@ -2,8 +2,6 @@
 
 This is a Python 3.6+ command-line utility and library for using websites that can perform port scans on your behalf.
 
-[**scanless**](http://www.urbandictionary.com/define.php?term=scanless) (adj): lacking respectable morals. _That girl is scanless!_
-
 ## Supported Online Port Scanners
 
 * [hackertarget](https://hackertarget.com/nmap-online-port-scanner/)
