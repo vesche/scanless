@@ -37,6 +37,7 @@ optional arguments:
   -r, --random          use a random scanner
   -l, --list            list scanners
   -a, --all             use all the scanners
+  -d, --debug           turns cli mode off for debugging, shows network errors
 
 $ scanless --list
 +----------------+--------------------------------------+
@@ -52,7 +53,8 @@ $ scanless --list
 +----------------+--------------------------------------+
 
 $ scanless -t scanme.nmap.org -s spiderip
-Running scanless v2.0.0...
+Running scanless v2.1.0...
+
 spiderip:
 PORT      STATE  SERVICE
 21/tcp    closed ftp
