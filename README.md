@@ -1,12 +1,11 @@
 # scanless
 
-This is a Python 3.6+ command-line utility and library for using websites that can perform port scans on your behalf.
+This is a Python 3 command-line utility and library for using websites that can perform port scans on your behalf.
 
 ## Supported Online Port Scanners
 
 * [hackertarget](https://hackertarget.com/nmap-online-port-scanner/)
 * [ipfingerprints](http://www.ipfingerprints.com/portscan.php)
-* [pingeu](http://ping.eu/port-chk/)
 * [spiderip](https://spiderip.com/online-port-scan.php)
 * [standingtech](https://portscanner.standingtech.com/)
 * [t1shopper](http://www.t1shopper.com/tools/port-scan/)
@@ -45,7 +44,6 @@ $ scanless --list
 +----------------|--------------------------------------+
 | hackertarget   | https://hackertarget.com             |
 | ipfingerprints | https://www.ipfingerprints.com       |
-| pingeu         | https://ping.eu                      |
 | spiderip       | https://spiderip.com                 |
 | standingtech   | https://portscanner.standingtech.com |
 | t1shopper      | http://www.t1shopper.com             |
@@ -53,26 +51,26 @@ $ scanless --list
 | yougetsignal   | https://www.yougetsignal.com         |
 +----------------+--------------------------------------+
 
-$ scanless -t scanme.nmap.org -s ipfingerprints
+$ scanless -t scanme.nmap.org -s spiderip
 Running scanless v2.0.0...
-ipfingerprints:
-Host is up (0.15s latency).
-Not shown: 484 closed ports
-PORT    STATE    SERVICE
-22/tcp  open     ssh
-80/tcp  open     http
-111/tcp filtered rpcbind
-135/tcp filtered msrpc
-136/tcp filtered profile
-137/tcp filtered netbios-ns
-138/tcp filtered netbios-dgm
-139/tcp filtered netbios-ssn
-445/tcp filtered microsoft-ds
-Aggressive OS guesses: Linux 2.6.32 - 3.13 (95%), Linux 2.6.22 - 2.6.36 (94%), Linux 3.10
-(94%), Linux 3.10 - 4.2 (94%), Linux 2.6.32 (93%), Linux 3.2 - 4.6 (93%), Linux 2.6.32 - 3.10
-(92%), Linux 2.6.18 (92%), Linux 3.16 - 4.6 (92%), HP P2000 G3 NAS device (92%)
-No exact OS matches for host (test conditions non-ideal).
-Network Distance: 7 hops
+spiderip:
+PORT      STATE  SERVICE
+21/tcp    closed ftp
+22/tcp    open   ssh
+25/tcp    closed smtp
+80/tcp    open   http
+110/tcp   closed pop3
+143/tcp   closed imap
+443/tcp   closed https
+465/tcp   closed smtps
+993/tcp   closed imaps
+995/tcp   closed pop3s
+1433/tcp  closed ms-sql-s
+3306/tcp  closed mysql
+3389/tcp  closed ms-wbt-server
+5900/tcp  closed vnc
+8080/tcp  closed http-proxy
+8443/tcp  closed https-alt
 ```
 
 ## Library Usage
@@ -81,7 +79,7 @@ Network Distance: 7 hops
 >>> import scanless
 >>> sl = scanless.Scanless()
 >>> list(sl.scanners.keys())
-['hackertarget', 'ipfingerprints', 'pingeu', 'spiderip', 'standingtech', 't1shopper', 'viewdns', 'yougetsignal']
+['hackertarget', 'ipfingerprints', 'spiderip', 'standingtech', 't1shopper', 'viewdns', 'yougetsignal']
 >>> output = sl.scan('scanme.nmap.org', scanner='hackertarget')
 >>> print(output)
 Starting Nmap 7.70 ( https://nmap.org ) at 2019-10-30 00:21 UTC
@@ -103,16 +101,18 @@ Nmap done: 1 IP address (1 host up) scanned in 0.11 seconds
 
 ## Docker
 
+Note from the repo author: I did not create, nor do I maintain Docker support or the Dockerfile for scanless. It was a nice community addition. If it's broken please open an issue or submit a pull request and I'll take a look. Thank you!
+
 ### Build
 
-To build the docker image, run:
+To build the Docker image, run:
 ```shell
 $ docker build -t scanless .
 ```
 
 ### Usage
 
-To use the docker image previously created, run the following with whichever options you want like `--help`:
+To use the Docker image previously created, run the following with whichever options you want like `--help`:
 ```shell
 $ docker run --rm -it scanless --help
 ```
