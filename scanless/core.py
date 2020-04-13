@@ -43,6 +43,21 @@ def generate_output(raw_data):
     return OUTPUT_TEMPLATE.format(lines='\n'.join(lines))
 
 
+def parse(output):
+    parsed_output = list()
+    for line in output.split('\n'):
+        if '/tcp' in line or '/udp' in line:
+            port_str, state, service = line.split()
+            port, protocol = port_str.split('/')
+            parsed_output.append({
+                'port': port,
+                'state': state,
+                'service': service,
+                'protocol': protocol,
+            })
+    return parsed_output
+
+
 class Scanless:
     def __init__(self, cli_mode=False):
         self.cli_mode = cli_mode
@@ -65,7 +80,7 @@ class Scanless:
     def _request(self, url, payload=None, method='POST'):
         self._randomize_user_agent()
         try:
-            response = self.session.request('POST', url, data=payload)
+            response = self.session.request('POST', url, data=payload, timeout=30)
             response.raise_for_status()
         except Exception as e:
             if self.cli_mode:
@@ -75,6 +90,9 @@ class Scanless:
 
     def _randomize_user_agent(self):
         self.session.headers['User-Agent'] = choice(USER_AGENTS)
+
+    def _return_dict(self, raw_output, parsed_output):
+        return {'raw': raw_output, 'parsed': parsed_output}
 
     def hackertarget(self, target):
         payload = {
@@ -88,7 +106,9 @@ class Scanless:
             return NETWORK_ERROR_MSG
         soup = bs4.BeautifulSoup(scan_results, 'html.parser')
         output = soup.findAll('pre', {'id': 'formResponse'})[0].string
-        return output.replace('\\n', '\n').strip()
+        raw_output = output.replace('\\n', '\n').strip()
+        parsed_output = parse(raw_output)
+        return self._return_dict(raw_output, parsed_output)
 
     def ipfingerprints(self, target):
         payload = {
@@ -102,9 +122,11 @@ class Scanless:
         }
         scan_results, status = self._request(URL_IPFINGERPRINTS, payload)
         if status != 'OK':
-            return NETWORK_ERROR_MSG
+            return self._return_dict(NETWORK_ERROR_MSG, list())
         output = re.sub('<[^<]+?>', '', scan_results)
-        return output.replace('\\n','\n').replace('\\/','/')[36:-46].strip()
+        raw_output = output.replace('\\n','\n').replace('\\/','/')[36:-46].strip()
+        parsed_output = parse(raw_output)
+        return self._return_dict(raw_output, parsed_output)
 
     def spiderip(self, target):
         ports = [
@@ -114,7 +136,7 @@ class Scanless:
         payload = {'ip': target, 'language[]': ports}
         scan_results, status = self._request(URL_SPIDERIP, payload)
         if status != 'OK':
-            return NETWORK_ERROR_MSG
+            return self._return_dict(NETWORK_ERROR_MSG, list())
         scan_results = scan_results.split('/images/')
         scan_results.pop(0)
         raw_data = list()
@@ -123,7 +145,9 @@ class Scanless:
                 raw_data.append((port, 'open'))
             else:
                 raw_data.append((port, 'closed'))
-        return generate_output(raw_data)
+        raw_output = generate_output(raw_data)
+        parsed_output = parse(raw_output)
+        return self._return_dict(raw_output, parsed_output)
 
     def standingtech(self, target):
         ports = [
@@ -136,12 +160,14 @@ class Scanless:
                 method='GET'
             )
             if status != 'OK':
-                return NETWORK_ERROR_MSG
+                return self._return_dict(NETWORK_ERROR_MSG, list())
             if 'open' in scan_results:
                 raw_data.append((p, 'open'))
             else:
                 raw_data.append((p, 'closed'))
-        return generate_output(raw_data)
+        raw_output = generate_output(raw_data)
+        parsed_output = parse(raw_output)
+        return self._return_dict(raw_output, parsed_output)
 
     def t1shopper(self, target):
         ports = [
@@ -151,7 +177,7 @@ class Scanless:
         payload = {'scan_host': target, 'port_array[]': ports}
         scan_results, status = self._request(URL_T1SHOPPER, payload)
         if status != 'OK':
-            return NETWORK_ERROR_MSG
+            return self._return_dict(NETWORK_ERROR_MSG, list())
         soup = bs4.BeautifulSoup(scan_results, 'html.parser')
         raw_data = list()
         for tt, port in zip(soup.find('pre').find_all('tt'), ports):
@@ -159,7 +185,9 @@ class Scanless:
                 raw_data.append((port, 'closed'))
             else:
                 raw_data.append((port, 'open'))
-        return generate_output(raw_data)
+        raw_output = generate_output(raw_data)
+        parsed_output = parse(raw_output)
+        return self._return_dict(raw_output, parsed_output)
 
     def viewdns(self, target):
         ports = [
@@ -168,7 +196,7 @@ class Scanless:
         ]
         scan_results, status = self._request(URL_VIEWDNS.format(target), method='GET')
         if status != 'OK':
-            return NETWORK_ERROR_MSG
+            return self._return_dict(NETWORK_ERROR_MSG, list())
         soup = bs4.BeautifulSoup(scan_results, 'html.parser')
         table, rows = soup.find('table'), soup.findAll('tr')
         raw_data = list()
@@ -178,7 +206,9 @@ class Scanless:
                 raw_data.append((port, 'closed'))
             else:
                 raw_data.append((port, 'open'))
-        return generate_output(raw_data)
+        raw_output = generate_output(raw_data)
+        parsed_output = parse(raw_output)
+        return self._return_dict(raw_output, parsed_output)
 
     def yougetsignal(self, target):
         ports = [
@@ -188,7 +218,7 @@ class Scanless:
         payload = {'remoteAddress': target}
         scan_results, status = self._request(URL_YOUGETSIGNAL, payload)
         if status != 'OK':
-            return NETWORK_ERROR_MSG
+            return self._return_dict(NETWORK_ERROR_MSG, list())
         soup = bs4.BeautifulSoup(scan_results, 'html.parser')
         imgs = soup.findAll('img')
         raw_data = list()
@@ -197,4 +227,6 @@ class Scanless:
                 raw_data.append((port, 'closed'))
             else:
                 raw_data.append((port, 'open'))
-        return generate_output(raw_data)
+        raw_output = generate_output(raw_data)
+        parsed_output = parse(raw_output)
+        return self._return_dict(raw_output, parsed_output)

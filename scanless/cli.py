@@ -110,7 +110,7 @@ def main():
     if args['all']:
         for s in scanners:
             print(f'{s}:')
-            display(sl.scan(target, scanner=s))
+            display(sl.scan(target, scanner=s)['raw'])
             print()
         return
 
@@ -119,6 +119,6 @@ def main():
 
     if scanner in scanners:
         print(f'{scanner}:')
-        display(sl.scan(target, scanner=scanner))
+        display(sl.scan(target, scanner=scanner)['raw'])
     else:
         print('Scanner not found, see --list to view all supported scanners.')

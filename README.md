@@ -81,7 +81,7 @@ PORT      STATE  SERVICE
 >>> list(sl.scanners.keys())
 ['hackertarget', 'ipfingerprints', 'spiderip', 'standingtech', 't1shopper', 'viewdns', 'yougetsignal']
 >>> output = sl.scan('scanme.nmap.org', scanner='hackertarget')
->>> print(output)
+>>> print(output['raw'])
 Starting Nmap 7.70 ( https://nmap.org ) at 2019-10-30 00:21 UTC
 Nmap scan report for scanme.nmap.org (45.33.32.156)
 Host is up (0.065s latency).
@@ -97,6 +97,34 @@ PORT     STATE  SERVICE
 3389/tcp closed ms-wbt-server
 
 Nmap done: 1 IP address (1 host up) scanned in 0.11 seconds
+>>> import json
+>>> print(json.dumps(output['parsed'], indent=2))
+[
+  {
+    "port": "21",
+    "state": "closed",
+    "service": "ftp",
+    "protocol": "tcp"
+  },
+  {
+    "port": "22",
+    "state": "open",
+    "service": "ssh",
+    "protocol": "tcp"
+  },
+  {
+    "port": "80",
+    "state": "open",
+    "service": "http",
+    "protocol": "tcp"
+  },
+  {
+    "port": "443",
+    "state": "closed",
+    "service": "https",
+    "protocol": "tcp"
+  }
+]
 ```
 
 ## Docker
