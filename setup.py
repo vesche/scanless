@@ -8,7 +8,7 @@ setup(
     package_data = {
         'scanless.static': ['*.txt']
     },
-    version='2.0.0',
+    version='2.1.0',
     description='An online port scan scraper.',
     license='Unlicense',
     url='https://github.com/vesche/scanless',
