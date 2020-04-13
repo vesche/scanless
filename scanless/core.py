@@ -10,7 +10,6 @@ from scanless.exceptions import ScannerNotFound, ScannerRequestError
 
 URL_HACKERTARGET    = 'https://hackertarget.com/nmap-online-port-scanner/'
 URL_IPFINGERPRINTS  = 'https://www.ipfingerprints.com/scripts/getPortsInfo.php'
-URL_PINGEU          = 'https://ping.eu/action.php?atype=5'
 URL_SPIDERIP        = 'https://spiderip.com/inc/port_scan.php'
 URL_STANDINGTECH    = 'https://portscanner.standingtech.com/portscan.php?port={0}&host={1}&protocol=TCP'
 URL_T1SHOPPER       = 'http://www.t1shopper.com/tools/port-scan/result/'
@@ -49,7 +48,6 @@ class Scanless:
         self.scanners = {
             'hackertarget':    self.hackertarget,
             'ipfingerprints':  self.ipfingerprints,
-            'pingeu':          self.pingeu,
             'spiderip':        self.spiderip,
             'standingtech':    self.standingtech,
             't1shopper':       self.t1shopper,
@@ -99,22 +97,6 @@ class Scanless:
         scan_results = self._request(URL_IPFINGERPRINTS, payload)
         output = re.sub('<[^<]+?>', '', scan_results)
         return output.replace('\\n','\n').replace('\\/','/')[36:-46].strip()
-
-    def pingeu(self, target):
-        ports = [
-            '21', '22', '23', '25', '53', '80', '139', '443', '445', '3389'
-        ]
-        raw_data = []
-        for p in ports:
-            payload = {'host': target, 'port': p, 'go': 'Go'}
-            result = self._request(URL_PINGEU, payload)
-            if 'closed' in result:
-                raw_data.append((p, 'closed'))
-            elif '10 requests per minute' in result:
-                raw_data.append((p, 'error')) 
-            else:
-                raw_data.append((p, 'open'))
-        return generate_output(raw_data)
 
     def spiderip(self, target):
         ports = [
