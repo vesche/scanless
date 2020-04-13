@@ -23,6 +23,7 @@ NMAP_SERVICES = open(nmap_file, 'r').read().splitlines()
 USER_AGENTS = open(ua_file, 'r').read().splitlines()
 
 OUTPUT_TEMPLATE = '''PORT      STATE  SERVICE\n{lines}'''
+NETWORK_ERROR_MSG = 'Network error, see --debug for details.'
 
 
 def lookup_service(port):
@@ -43,7 +44,8 @@ def generate_output(raw_data):
 
 
 class Scanless:
-    def __init__(self):
+    def __init__(self, cli_mode=False):
+        self.cli_mode = cli_mode
         self.session = requests.Session()
         self.scanners = {
             'hackertarget':    self.hackertarget,
@@ -64,10 +66,12 @@ class Scanless:
         self._randomize_user_agent()
         try:
             response = self.session.request('POST', url, data=payload)
+            response.raise_for_status()
         except Exception as e:
+            if self.cli_mode:
+                return (None, 'ERROR')
             raise ScannerRequestError(e)
-        response.raise_for_status()
-        return response.content.decode('utf-8')
+        return (response.content.decode('utf-8'), 'OK')
 
     def _randomize_user_agent(self):
         self.session.headers['User-Agent'] = choice(USER_AGENTS)
@@ -79,7 +83,9 @@ class Scanless:
             'name_of_nonce_field': '5a8d0006b9',
             '_wp_http_referer': '/nmap-online-port-scanner/'
         }
-        scan_results = self._request(URL_HACKERTARGET, payload)
+        scan_results, status = self._request(URL_HACKERTARGET, payload)
+        if status != 'OK':
+            return NETWORK_ERROR_MSG
         soup = bs4.BeautifulSoup(scan_results, 'html.parser')
         output = soup.findAll('pre', {'id': 'formResponse'})[0].string
         return output.replace('\\n', '\n').strip()
@@ -94,7 +100,9 @@ class Scanless:
             'ping_type': 'none',
             'os_detect': 'on'
         }
-        scan_results = self._request(URL_IPFINGERPRINTS, payload)
+        scan_results, status = self._request(URL_IPFINGERPRINTS, payload)
+        if status != 'OK':
+            return NETWORK_ERROR_MSG
         output = re.sub('<[^<]+?>', '', scan_results)
         return output.replace('\\n','\n').replace('\\/','/')[36:-46].strip()
 
@@ -104,9 +112,12 @@ class Scanless:
             5900, 8080, 8443
         ]
         payload = {'ip': target, 'language[]': ports}
-        scan_results = self._request(URL_SPIDERIP, payload).split('/images/')
+        scan_results, status = self._request(URL_SPIDERIP, payload)
+        if status != 'OK':
+            return NETWORK_ERROR_MSG
+        scan_results = scan_results.split('/images/')
         scan_results.pop(0)
-        raw_data = []
+        raw_data = list()
         for result, port in zip(scan_results, ports):
             if 'open' in result:
                 raw_data.append((port, 'open'))
@@ -120,11 +131,13 @@ class Scanless:
         ]
         raw_data = []
         for p in ports:
-            result = self._request(
+            scan_results, status = self._request(
                 URL_STANDINGTECH.format(p, target),
                 method='GET'
             )
-            if 'open' in result:
+            if status != 'OK':
+                return NETWORK_ERROR_MSG
+            if 'open' in scan_results:
                 raw_data.append((p, 'open'))
             else:
                 raw_data.append((p, 'closed'))
@@ -136,9 +149,11 @@ class Scanless:
             5900, 8080
         ]
         payload = {'scan_host': target, 'port_array[]': ports}
-        scan_results = self._request(URL_T1SHOPPER, payload)
+        scan_results, status = self._request(URL_T1SHOPPER, payload)
+        if status != 'OK':
+            return NETWORK_ERROR_MSG
         soup = bs4.BeautifulSoup(scan_results, 'html.parser')
-        raw_data = []
+        raw_data = list()
         for tt, port in zip(soup.find('pre').find_all('tt'), ports):
             if tt.text.find('isn\'t') > -1:
                 raw_data.append((port, 'closed'))
@@ -151,10 +166,12 @@ class Scanless:
             21, 22, 23, 25, 53, 80, 110, 139, 143, 443, 445, 1433, 1521,
             3306, 3389
         ]
-        scan_results = self._request(URL_VIEWDNS.format(target), method='GET')
+        scan_results, status = self._request(URL_VIEWDNS.format(target), method='GET')
+        if status != 'OK':
+            return NETWORK_ERROR_MSG
         soup = bs4.BeautifulSoup(scan_results, 'html.parser')
         table, rows = soup.find('table'), soup.findAll('tr')
-        raw_data = []
+        raw_data = list()
         for tr, port in zip(rows[7:22], ports):
             cols = str(tr.findAll('td'))
             if 'error.GIF' in cols:
@@ -169,10 +186,12 @@ class Scanless:
             1433, 3306, 3389, 5632, 5900, 6112
         ]
         payload = {'remoteAddress': target}
-        scan_results = self._request(URL_YOUGETSIGNAL, payload)
+        scan_results, status = self._request(URL_YOUGETSIGNAL, payload)
+        if status != 'OK':
+            return NETWORK_ERROR_MSG
         soup = bs4.BeautifulSoup(scan_results, 'html.parser')
         imgs = soup.findAll('img')
-        raw_data = []
+        raw_data = list()
         for img, port in zip(imgs, ports):
             if 'red' in str(img):
                 raw_data.append((port, 'closed'))

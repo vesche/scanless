@@ -1,5 +1,6 @@
 """scanless.cli"""
 
+import crayons
 import argparse
 
 from random import choice
@@ -18,9 +19,9 @@ SCAN_LIST = '''\
 | viewdns        | https://viewdns.info                 |
 | yougetsignal   | https://www.yougetsignal.com         |
 +----------------+--------------------------------------+'''
-VERSION = '2.0.0'
+VERSION = '2.1.0'
 
-sl = Scanless()
+sl = Scanless(cli_mode=True)
 
 
 def get_parser():
@@ -29,16 +30,19 @@ def get_parser():
     )
     parser.add_argument(
         '-v', '--version',
-        action='store_true', help='display the current version'
+        action='store_true',
+        help='display the current version'
     )
     parser.add_argument(
         '-t', '--target',
-        help='ip or domain to scan', type=str
+        help='ip or domain to scan',
+        type=str
     )
     parser.add_argument(
         '-s', '--scanner',
         default='hackertarget',
-        help='scanner to use (default: hackertarget)', type=str
+        help='scanner to use (default: hackertarget)',
+        type=str
     )
     parser.add_argument(
         '-r', '--random',
@@ -55,7 +59,27 @@ def get_parser():
         action='store_true',
         help='use all the scanners'
     )
+    parser.add_argument(
+        '-d', '--debug',
+        action='store_true',
+        help='turns cli mode off for debugging, shows network errors'
+    )
     return parser
+
+
+def display(results):
+    for line in results.split('\n'):
+        if not line:
+            continue
+        elif 'tcp' in line or 'udp' in line:
+            if 'open' in line:
+                print(crayons.green(line))
+            elif 'closed' in line:
+                print(crayons.red(line))
+            elif 'filtered' in line:
+                print(crayons.yellow(line))
+        else:
+            print(line)
 
 
 def main():
@@ -63,22 +87,31 @@ def main():
     args = vars(parser.parse_args())
 
     if args['version']:
-        print(f'v{VERSION}'); return
+        print(f'v{VERSION}')
+        return
+
     if args['list']:
-        print(SCAN_LIST); return
+        print(SCAN_LIST)
+        return
+
     if not args['target']:
-        parser.print_help(); return
+        parser.print_help()
+        return
+
+    if args['debug']:
+        sl.cli_mode = False
 
     target = args['target']
     scanner = args['scanner'].lower()
 
-    print(f'Running scanless v{VERSION}...')
+    print(f'Running scanless v{VERSION}...\n')
     scanners = sl.scanners.keys()
 
     if args['all']:
         for s in scanners:
             print(f'{s}:')
-            print(sl.scan(target, scanner=s) + '\n')
+            display(sl.scan(target, scanner=s))
+            print()
         return
 
     if args['random']:
@@ -86,6 +119,6 @@ def main():
 
     if scanner in scanners:
         print(f'{scanner}:')
-        print(sl.scan(target, scanner=scanner))
+        display(sl.scan(target, scanner=scanner))
     else:
         print('Scanner not found, see --list to view all supported scanners.')
