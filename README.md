@@ -77,26 +77,23 @@ PORT      STATE  SERVICE
 
 ## Library Usage
 
-```python
+```
 >>> import scanless
 >>> sl = scanless.Scanless()
 >>> list(sl.scanners.keys())
 ['hackertarget', 'ipfingerprints', 'spiderip', 'standingtech', 't1shopper', 'viewdns', 'yougetsignal']
 >>> output = sl.scan('scanme.nmap.org', scanner='hackertarget')
 >>> print(output['raw'])
-Starting Nmap 7.70 ( https://nmap.org ) at 2019-10-30 00:21 UTC
+Starting Nmap 7.70 ( https://nmap.org ) at 2020-05-12 21:39 UTC
 Nmap scan report for scanme.nmap.org (45.33.32.156)
 Host is up (0.065s latency).
+Other addresses for scanme.nmap.org (not scanned): 2600:3c01::f03c:91ff:fe18:bb2f
 
-PORT     STATE  SERVICE
-21/tcp   closed ftp
-22/tcp   open   ssh
-23/tcp   closed telnet
-80/tcp   open   http
-110/tcp  closed pop3
-143/tcp  closed imap
-443/tcp  closed https
-3389/tcp closed ms-wbt-server
+PORT    STATE  SERVICE
+21/tcp  closed ftp
+22/tcp  open   ssh
+80/tcp  open   http
+443/tcp closed https
 
 Nmap done: 1 IP address (1 host up) scanned in 0.11 seconds
 >>> import json
@@ -131,7 +128,7 @@ Nmap done: 1 IP address (1 host up) scanned in 0.11 seconds
 
 ## Docker
 
-Note from the repo author: I did not create, nor do I maintain Docker support or the Dockerfile for scanless. It was a nice community addition. If it's broken please open an issue or submit a pull request and I'll take a look. Thank you!
+**Note from the repo author:** I did not create, nor do I maintain Docker support or the Dockerfile for scanless. It was a nice community addition. If it's broken please open an issue or submit a pull request and I'll take a look. Thank you!
 
 ### Build
 
@@ -143,12 +140,12 @@ $ docker build -t scanless .
 ### Usage
 
 To use the Docker image previously created, run the following with whichever options you want like `--help`:
-```shell
+```
 $ docker run --rm -it scanless --help
 ```
 
 If that long command is too troublesome, you can make an alias like so: `alias scanless="docker run --rm -it scanless"` and then run `scanless` as you would normally:
-```shell
+```
 $ scanless --help
 $ scanless -l
 $ scanless -t scanme.nmap.org -s yougetsignal

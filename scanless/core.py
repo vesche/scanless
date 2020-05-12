@@ -22,7 +22,7 @@ ua_file = os.path.join(pwd, 'static/user-agents.txt')
 NMAP_SERVICES = open(nmap_file, 'r').read().splitlines()
 USER_AGENTS = open(ua_file, 'r').read().splitlines()
 
-OUTPUT_TEMPLATE = '''PORT      STATE  SERVICE\n{lines}'''
+OUTPUT_TEMPLATE = 'PORT      STATE  SERVICE\n{lines}'
 NETWORK_ERROR_MSG = 'Network error, see --debug for details.'
 
 
@@ -34,7 +34,7 @@ def lookup_service(port):
 
 def generate_output(raw_data):
     # raw_data = [(22, 'closed'), (23, 'open'), ...]
-    lines = []
+    lines = list()
     for raw in raw_data:
         p, state = raw
         service = lookup_service(p)
@@ -103,7 +103,7 @@ class Scanless:
         }
         scan_results, status = self._request(URL_HACKERTARGET, payload)
         if status != 'OK':
-            return NETWORK_ERROR_MSG
+            return self._return_dict(NETWORK_ERROR_MSG, list())
         soup = bs4.BeautifulSoup(scan_results, 'html.parser')
         output = soup.findAll('pre', {'id': 'formResponse'})[0].string
         raw_output = output.replace('\\n', '\n').strip()
@@ -153,7 +153,7 @@ class Scanless:
         ports = [
             21, 22, 23, 25, 80, 110, 139, 143, 443, 445, 1433, 3306, 3389, 5900
         ]
-        raw_data = []
+        raw_data = list()
         for p in ports:
             scan_results, status = self._request(
                 URL_STANDINGTECH.format(p, target),
