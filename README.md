@@ -37,12 +37,12 @@ optional arguments:
   -r, --random          use a random scanner
   -l, --list            list scanners
   -a, --all             use all the scanners
-  -d, --debug           turns cli mode off for debugging, shows network errors
+  -d, --debug           debug mode (cli mode off & show network errors)
 
 $ scanless --list
 +----------------+--------------------------------------+
 | Scanner Name   | Website                              |
-+----------------|--------------------------------------+
++----------------+--------------------------------------+
 | hackertarget   | https://hackertarget.com             |
 | ipfingerprints | https://www.ipfingerprints.com       |
 | spiderip       | https://spiderip.com                 |
@@ -53,7 +53,7 @@ $ scanless --list
 +----------------+--------------------------------------+
 
 $ scanless -t scanme.nmap.org -s spiderip
-Running scanless v2.1.0...
+Running scanless v2.1.2...
 
 spiderip:
 PORT      STATE  SERVICE
@@ -80,8 +80,6 @@ PORT      STATE  SERVICE
 ```
 >>> import scanless
 >>> sl = scanless.Scanless()
->>> list(sl.scanners.keys())
-['hackertarget', 'ipfingerprints', 'spiderip', 'standingtech', 't1shopper', 'viewdns', 'yougetsignal']
 >>> output = sl.scan('scanme.nmap.org', scanner='hackertarget')
 >>> print(output['raw'])
 Starting Nmap 7.70 ( https://nmap.org ) at 2020-05-12 21:39 UTC

@@ -19,8 +19,8 @@ URL_YOUGETSIGNAL    = 'https://ports.yougetsignal.com/short-scan.php'
 pwd = os.path.abspath(os.path.dirname(__file__))
 nmap_file = os.path.join(pwd, 'static/nmap-services.txt')
 ua_file = os.path.join(pwd, 'static/user-agents.txt')
-NMAP_SERVICES = open(nmap_file, 'r').read().splitlines()
-USER_AGENTS = open(ua_file, 'r').read().splitlines()
+NMAP_SERVICES = open(nmap_file).read().splitlines()
+USER_AGENTS = open(ua_file).read().splitlines()
 
 OUTPUT_TEMPLATE = 'PORT      STATE  SERVICE\n{lines}'
 NETWORK_ERROR_MSG = 'Network error, see --debug for details.'

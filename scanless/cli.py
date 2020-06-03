@@ -9,7 +9,7 @@ from scanless.core import Scanless
 SCAN_LIST = '''\
 +----------------+--------------------------------------+
 | Scanner Name   | Website                              |
-+----------------|--------------------------------------+
++----------------+--------------------------------------+
 | hackertarget   | https://hackertarget.com             |
 | ipfingerprints | https://www.ipfingerprints.com       |
 | pingeu         | https://ping.eu                      |
@@ -19,7 +19,7 @@ SCAN_LIST = '''\
 | viewdns        | https://viewdns.info                 |
 | yougetsignal   | https://www.yougetsignal.com         |
 +----------------+--------------------------------------+'''
-VERSION = '2.1.1'
+VERSION = '2.1.2'
 
 sl = Scanless(cli_mode=True)
 
@@ -62,7 +62,7 @@ def get_parser():
     parser.add_argument(
         '-d', '--debug',
         action='store_true',
-        help='turns cli mode off for debugging, shows network errors'
+        help='debug mode (cli mode off & show network errors)'
     )
     return parser
 
@@ -73,13 +73,12 @@ def display(results):
             continue
         elif 'tcp' in line or 'udp' in line:
             if 'open' in line:
-                print(crayons.green(line))
+                line = crayons.green(line)
             elif 'closed' in line:
-                print(crayons.red(line))
+                line = crayons.red(line)
             elif 'filtered' in line:
-                print(crayons.yellow(line))
-        else:
-            print(line)
+                line = crayons.yellow(line)
+        print(line)
 
 
 def main():
