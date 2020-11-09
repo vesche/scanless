@@ -77,19 +77,19 @@ class Scanless:
             raise ScannerNotFound(f'Unknown scanner, {scanner}.')
         return self.scanners[scanner](target)
 
+    def _randomize_user_agent(self):
+        self.session.headers['User-Agent'] = choice(USER_AGENTS)
+
     def _request(self, url, payload=None, method='POST'):
         self._randomize_user_agent()
         try:
-            response = self.session.request('POST', url, data=payload, timeout=30)
+            response = self.session.request(method, url, data=payload, timeout=30)
             response.raise_for_status()
         except Exception as e:
             if self.cli_mode:
                 return (None, 'ERROR')
             raise ScannerRequestError(e)
         return (response.content.decode('utf-8'), 'OK')
-
-    def _randomize_user_agent(self):
-        self.session.headers['User-Agent'] = choice(USER_AGENTS)
 
     def _return_dict(self, raw_output, parsed_output):
         return {'raw': raw_output, 'parsed': parsed_output}

@@ -53,7 +53,7 @@ $ scanless --list
 +----------------+--------------------------------------+
 
 $ scanless -t scanme.nmap.org -s spiderip
-Running scanless v2.1.3...
+Running scanless v2.1.4...
 
 spiderip:
 PORT      STATE  SERVICE
