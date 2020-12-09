@@ -19,7 +19,7 @@ SCAN_LIST = '''\
 | viewdns        | https://viewdns.info                 |
 | yougetsignal   | https://www.yougetsignal.com         |
 +----------------+--------------------------------------+'''
-VERSION = '2.1.4'
+VERSION = '2.1.5'
 
 sl = Scanless(cli_mode=True)
 

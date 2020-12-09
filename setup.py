@@ -1,6 +1,11 @@
 #!/usr/bin/env python
 
+import os
 from setuptools import setup
+
+directory = os.path.abspath(os.path.dirname(__file__))
+with open(os.path.join(directory, 'README.md'), encoding='utf-8') as f:
+    long_description = f.read()
 
 setup(
     name='scanless',
@@ -11,8 +16,10 @@ setup(
     package_data = {
         'scanless.static': ['*.txt']
     },
-    version='2.1.4',
+    version='2.1.5',
     description='An online port scan scraper.',
+    long_description=long_description,
+    long_description_content_type='text/markdown',
     license='Unlicense',
     url='https://github.com/vesche/scanless',
     author='Austin Jackson',
@@ -33,7 +40,7 @@ setup(
         'Intended Audience :: Information Technology',
         'License :: Public Domain',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
         'Topic :: Security'
     ]
 )
