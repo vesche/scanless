@@ -1,6 +1,3 @@
-"""scanless.exceptions"""
-
-
 class ScannerNotFound(Exception):
     pass
 

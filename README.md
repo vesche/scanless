@@ -8,7 +8,6 @@ This is a Python 3 command-line utility and library for using websites that can 
 * [ipfingerprints](http://www.ipfingerprints.com/portscan.php)
 * [spiderip](https://spiderip.com/online-port-scan.php)
 * [standingtech](https://portscanner.standingtech.com/)
-* [t1shopper](http://www.t1shopper.com/tools/port-scan/)
 * [viewdns](http://viewdns.info/)
 * [yougetsignal](http://www.yougetsignal.com/tools/open-ports/)
 
@@ -47,13 +46,12 @@ $ scanless --list
 | ipfingerprints | https://www.ipfingerprints.com       |
 | spiderip       | https://spiderip.com                 |
 | standingtech   | https://portscanner.standingtech.com |
-| t1shopper      | http://www.t1shopper.com             |
 | viewdns        | https://viewdns.info                 |
 | yougetsignal   | https://www.yougetsignal.com         |
 +----------------+--------------------------------------+
 
 $ scanless -t scanme.nmap.org -s spiderip
-Running scanless v2.1.4...
+Running scanless v2.1.6...
 
 spiderip:
 PORT      STATE  SERVICE
@@ -122,29 +120,4 @@ Nmap done: 1 IP address (1 host up) scanned in 0.11 seconds
     "protocol": "tcp"
   }
 ]
-```
-
-## Docker
-
-**Note from the repo author:** I did not create, nor do I maintain Docker support or the Dockerfile for scanless. It was a nice community addition. If it's broken please open an issue or submit a pull request and I'll take a look. Thank you!
-
-### Build
-
-To build the Docker image, run:
-```shell
-$ docker build -t scanless .
-```
-
-### Usage
-
-To use the Docker image previously created, run the following with whichever options you want like `--help`:
-```
-$ docker run --rm -it scanless --help
-```
-
-If that long command is too troublesome, you can make an alias like so: `alias scanless="docker run --rm -it scanless"` and then run `scanless` as you would normally:
-```
-$ scanless --help
-$ scanless -l
-$ scanless -t scanme.nmap.org -s yougetsignal
 ```
