@@ -12,7 +12,7 @@ setup(
     name="scanless",
     packages=["scanless", "scanless.static"],
     package_data={"scanless.static": ["*.txt"]},
-    version="2.2.0",
+    version="2.2.1",
     description="An online port scan scraper.",
     long_description=long_description,
     long_description_content_type="text/markdown",
