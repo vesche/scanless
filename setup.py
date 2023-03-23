@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 
 import os
+
 from setuptools import setup
 
 directory = os.path.abspath(os.path.dirname(__file__))
@@ -11,7 +12,7 @@ setup(
     name="scanless",
     packages=["scanless", "scanless.static"],
     package_data={"scanless.static": ["*.txt"]},
-    version="2.1.6",
+    version="2.2",
     description="An online port scan scraper.",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -31,7 +32,7 @@ setup(
         "Intended Audience :: Information Technology",
         "License :: Public Domain",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
         "Topic :: Security",
     ],
 )

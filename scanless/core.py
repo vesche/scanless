@@ -1,12 +1,13 @@
 import os
 import re
+
+from random import choice
+
 import bs4
 import requests
 
-from random import choice
 from scanless.exceptions import ScannerNotFound, ScannerRequestError
 
-URL_HACKERTARGET = "https://hackertarget.com/nmap-online-port-scanner/"
 URL_IPFINGERPRINTS = "https://www.ipfingerprints.com/scripts/getPortsInfo.php"
 URL_SPIDERIP = "https://spiderip.com/inc/port_scan.php"
 URL_STANDINGTECH = "https://portscanner.standingtech.com/portscan.php?port={0}&host={1}&protocol=TCP"
@@ -62,7 +63,6 @@ class Scanless:
         self.cli_mode = cli_mode
         self.session = requests.Session()
         self.scanners = {
-            "hackertarget": self.hackertarget,
             "ipfingerprints": self.ipfingerprints,
             "spiderip": self.spiderip,
             "standingtech": self.standingtech,
@@ -70,7 +70,7 @@ class Scanless:
             "yougetsignal": self.yougetsignal,
         }
 
-    def scan(self, target, scanner="hackertarget"):
+    def scan(self, target, scanner="yougetsignal"):
         if scanner not in self.scanners:
             raise ScannerNotFound(f"Unknown scanner, {scanner}.")
         return self.scanners[scanner](target)
@@ -91,22 +91,6 @@ class Scanless:
 
     def _return_dict(self, raw_output, parsed_output):
         return {"raw": raw_output, "parsed": parsed_output}
-
-    def hackertarget(self, target):
-        payload = {
-            "theinput": target,
-            "thetest": "nmap",
-            "name_of_nonce_field": "5a8d0006b9",
-            "_wp_http_referer": "/nmap-online-port-scanner/",
-        }
-        scan_results, status = self._request(URL_HACKERTARGET, payload)
-        if status != "OK":
-            return self._return_dict(NETWORK_ERROR_MSG, list())
-        soup = bs4.BeautifulSoup(scan_results, "html.parser")
-        output = soup.findAll("pre", {"id": "formResponse"})[0].string
-        raw_output = output.replace("\\n", "\n").strip()
-        parsed_output = parse(raw_output)
-        return self._return_dict(raw_output, parsed_output)
 
     def ipfingerprints(self, target):
         payload = {
@@ -162,7 +146,22 @@ class Scanless:
         return self._return_dict(raw_output, parsed_output)
 
     def standingtech(self, target):
-        ports = [21, 22, 23, 25, 80, 110, 139, 143, 443, 445, 1433, 3306, 3389, 5900]
+        ports = [
+            21,
+            22,
+            23,
+            25,
+            80,
+            110,
+            139,
+            143,
+            443,
+            445,
+            1433,
+            3306,
+            3389,
+            5900,
+        ]
         raw_data = list()
         for p in ports:
             scan_results, status = self._request(

@@ -1,10 +1,9 @@
 # scanless
 
-This is a Python 3 command-line utility and library for using websites that can perform port scans on your behalf.
+This is a Python command-line utility and library for using websites that can perform port scans on your behalf.
 
 ## Supported Online Port Scanners
 
-* [hackertarget](https://hackertarget.com/nmap-online-port-scanner/)
 * [ipfingerprints](http://www.ipfingerprints.com/portscan.php)
 * [spiderip](https://spiderip.com/online-port-scan.php)
 * [standingtech](https://portscanner.standingtech.com/)
@@ -21,18 +20,18 @@ $ pip install scanless --user
 ## CLI Usage
 
 ```
-$ scanless --help  
-usage: scanless [-h] [-v] [-t TARGET] [-s SCANNER] [-r] [-l] [-a]
+$ scanless --help
+usage: scanless [-h] [-v] [-t TARGET] [-s SCANNER] [-r] [-l] [-a] [-d]
 
 scanless, an online port scan scraper.
 
-optional arguments:
+options:
   -h, --help            show this help message and exit
   -v, --version         display the current version
   -t TARGET, --target TARGET
                         ip or domain to scan
   -s SCANNER, --scanner SCANNER
-                        scanner to use (default: hackertarget)
+                        scanner to use (default: yougetsignal)
   -r, --random          use a random scanner
   -l, --list            list scanners
   -a, --all             use all the scanners
@@ -42,7 +41,6 @@ $ scanless --list
 +----------------+--------------------------------------+
 | Scanner Name   | Website                              |
 +----------------+--------------------------------------+
-| hackertarget   | https://hackertarget.com             |
 | ipfingerprints | https://www.ipfingerprints.com       |
 | spiderip       | https://spiderip.com                 |
 | standingtech   | https://portscanner.standingtech.com |
@@ -51,7 +49,7 @@ $ scanless --list
 +----------------+--------------------------------------+
 
 $ scanless -t scanme.nmap.org -s spiderip
-Running scanless v2.1.6...
+Running scanless v2.2 ...
 
 spiderip:
 PORT      STATE  SERVICE
@@ -78,20 +76,29 @@ PORT      STATE  SERVICE
 ```
 >>> import scanless
 >>> sl = scanless.Scanless()
->>> output = sl.scan('scanme.nmap.org', scanner='hackertarget')
+>>> output = sl.scan('scanme.nmap.org', scanner='yougetsignal')
 >>> print(output['raw'])
-Starting Nmap 7.70 ( https://nmap.org ) at 2020-05-12 21:39 UTC
-Nmap scan report for scanme.nmap.org (45.33.32.156)
-Host is up (0.065s latency).
-Other addresses for scanme.nmap.org (not scanned): 2600:3c01::f03c:91ff:fe18:bb2f
-
-PORT    STATE  SERVICE
-21/tcp  closed ftp
-22/tcp  open   ssh
-80/tcp  open   http
-443/tcp closed https
-
-Nmap done: 1 IP address (1 host up) scanned in 0.11 seconds
+PORT      STATE  SERVICE
+21/tcp    closed ftp
+22/tcp    open   ssh
+23/tcp    closed telnet
+25/tcp    closed smtp
+53/tcp    closed domain
+80/tcp    open   http
+110/tcp   closed pop3
+115/tcp   closed sftp
+135/tcp   closed msrpc
+139/tcp   closed netbios-ssn
+143/tcp   closed imap
+194/tcp   closed irc
+443/tcp   closed https
+445/tcp   closed microsoft-ds
+1433/tcp  closed ms-sql-s
+3306/tcp  closed mysql
+3389/tcp  closed ms-wbt-server
+5632/tcp  closed pcanywherestat
+5900/tcp  closed vnc
+6112/tcp  closed dtspc
 >>> import json
 >>> print(json.dumps(output['parsed'], indent=2))
 [
@@ -108,16 +115,29 @@ Nmap done: 1 IP address (1 host up) scanned in 0.11 seconds
     "protocol": "tcp"
   },
   {
+    "port": "23",
+    "state": "closed",
+    "service": "telnet",
+    "protocol": "tcp"
+  },
+  {
+    "port": "25",
+    "state": "closed",
+    "service": "smtp",
+    "protocol": "tcp"
+  },
+  {
+    "port": "53",
+    "state": "closed",
+    "service": "domain",
+    "protocol": "tcp"
+  },
+  {
     "port": "80",
     "state": "open",
     "service": "http",
     "protocol": "tcp"
   },
-  {
-    "port": "443",
-    "state": "closed",
-    "service": "https",
-    "protocol": "tcp"
-  }
+  ...
 ]
 ```

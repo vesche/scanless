@@ -1,14 +1,15 @@
-import crayons
 import argparse
 
 from random import choice
+
+import crayons
+
 from scanless.core import Scanless
 
 SCAN_LIST = """\
 +----------------+--------------------------------------+
 | Scanner Name   | Website                              |
 +----------------+--------------------------------------+
-| hackertarget   | https://hackertarget.com             |
 | ipfingerprints | https://www.ipfingerprints.com       |
 | pingeu         | https://ping.eu                      |
 | spiderip       | https://spiderip.com                 |
@@ -16,7 +17,7 @@ SCAN_LIST = """\
 | viewdns        | https://viewdns.info                 |
 | yougetsignal   | https://www.yougetsignal.com         |
 +----------------+--------------------------------------+"""
-VERSION = "2.1.6"
+VERSION = "2.2"
 
 sl = Scanless(cli_mode=True)
 
@@ -29,37 +30,38 @@ def get_parser():
         "-v",
         "--version",
         action="store_true",
-        help="display the current version"
+        help="display the current version",
     )
     parser.add_argument(
         "-t",
         "--target",
         help="ip or domain to scan",
-        type=str
+        type=str,
     )
     parser.add_argument(
         "-s",
         "--scanner",
-        default="hackertarget",
-        help="scanner to use (default: hackertarget)",
+        default="yougetsignal",
+        help="scanner to use (default: yougetsignal)",
         type=str,
     )
     parser.add_argument(
         "-r",
         "--random",
         action="store_true",
-        help="use a random scanner"
+        help="use a random scanner",
     )
     parser.add_argument(
         "-l",
         "--list",
         action="store_true",
-        help="list scanners")
+        help="list scanners",
+    )
     parser.add_argument(
         "-a",
         "--all",
         action="store_true",
-        help="use all the scanners"
+        help="use all the scanners",
     )
     parser.add_argument(
         "-d",
@@ -106,7 +108,7 @@ def main():
     target = args["target"]
     scanner = args["scanner"].lower()
 
-    print(f"Running scanless v{VERSION}...\n")
+    print(f"Running scanless v{VERSION} ...\n")
     scanners = sl.scanners.keys()
 
     if args["all"]:
