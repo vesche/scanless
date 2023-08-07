@@ -1,3 +1,5 @@
+⚠️ I am no longer maintaining scanless as of August 2023. ⚠️
+
 # scanless
 
 This is a Python command-line utility and library for using websites that can perform port scans on your behalf.
